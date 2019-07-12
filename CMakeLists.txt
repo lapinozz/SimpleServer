@@ -24,4 +24,10 @@ install(
     DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/)
 
-add_subdirectory(example)
+option(BUILD_EXAMPLES "" ON)
+
+if(BUILD_EXAMPLES)
+    add_subdirectory(example)
+endif()
+
+unset(BUILD_EXAMPLES CACHE)
