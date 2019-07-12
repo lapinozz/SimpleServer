@@ -1,6 +1,6 @@
 #include <fstream>
 
-#include "simpleserver.hpp"
+#include "../include/SimpleServer/simpleserver.hpp"
 
 using namespace SimpleServer;
 
