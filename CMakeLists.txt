@@ -3,7 +3,12 @@ project(SimpleServer LANGUAGES CXX)
 
 include(GNUInstallDirs)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/)
+message(${CMAKE_MODULE_PATH})
+find_package(Networking REQUIRED)
+
 add_library(SimpleServer INTERFACE)
+target_link_libraries(SimpleServer INTERFACE Networking)
 
 target_include_directories(
     SimpleServer INTERFACE
