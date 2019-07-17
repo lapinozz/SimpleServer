@@ -12,7 +12,7 @@ endif (WIN32)
 target_include_directories(
     SimpleServer INTERFACE
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/SimpleServer>)
 
 install(
     TARGETS SimpleServer
@@ -20,7 +20,7 @@ install(
 
 install(
     EXPORT SimpleServerConfig
-    NAMESPACE lapi::
+    NAMESPACE SimpleServer::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/SimpleServer
 )
 
