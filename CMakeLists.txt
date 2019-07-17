@@ -11,7 +11,7 @@ endif (WIN32)
 
 target_include_directories(
     SimpleServer INTERFACE
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/SimpleServer>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/SimpleServer>)
 
 install(
@@ -25,7 +25,7 @@ install(
 )
 
 install(
-    DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
+    DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/SimpleServer
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/)
 
 option(BUILD_EXAMPLES "" ON)
