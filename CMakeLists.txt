@@ -3,9 +3,6 @@ project(SimpleServer LANGUAGES CXX)
 
 include(GNUInstallDirs)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/)
-message(${CMAKE_MODULE_PATH})
-
 add_library(SimpleServer INTERFACE)
 
 if (WIN32)
