@@ -5,10 +5,12 @@ include(GNUInstallDirs)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/)
 message(${CMAKE_MODULE_PATH})
-find_package(Networking REQUIRED)
 
 add_library(SimpleServer INTERFACE)
-target_link_libraries(SimpleServer INTERFACE Networking)
+
+if (WIN32)
+    target_link_libraries(SimpleServer INTERFACE -lws2_32 -lwsock32)
+endif (WIN32)
 
 target_include_directories(
     SimpleServer INTERFACE
@@ -17,10 +19,10 @@ target_include_directories(
 
 install(
     TARGETS SimpleServer
-    EXPORT SimpleServer-config)
+    EXPORT SimpleServerConfig)
 
 install(
-    EXPORT SimpleServer-config
+    EXPORT SimpleServerConfig
     NAMESPACE lapi::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/SimpleServer
 )
