@@ -17,7 +17,7 @@ uint64_t getTimeMs()
 
 static std::string decodeUri(std::string uri)
 {
-    size_t pos;
+    size_t pos = 0;
     while((pos = uri.find("%", pos)) != std::string::npos)
     {
         if(pos + 2 >= uri.size() || !isHex(uri[pos + 1]) || !isHex(uri[pos + 2]))
