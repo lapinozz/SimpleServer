@@ -1,6 +1,7 @@
 #pragma once
 
 #include <chrono>
+#include <thread>
 #include <vector>
 #include <cassert>
 #include <cstring>
@@ -378,8 +379,13 @@ namespace SimpleServer
 
         auto time = getTimeMs();
 
-        while(SOCKET_IS_INVALID(newSocket) && (timeoutMs == 0 || getTimeMs() - time < timeoutMs))
+        do
+        {
             newSocket = accept(listener, (struct sockaddr*)&newSocketAddr, &addrSize);
+        }
+        while(SOCKET_IS_INVALID(newSocket) && 
+             (timeoutMs == 0 || getTimeMs() - time < timeoutMs) && 
+             (std::this_thread::sleep_for(std::chrono::milliseconds(1)), true));
 
         setBlocking(newSocket, blocking);
 

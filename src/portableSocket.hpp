@@ -134,8 +134,13 @@ SOCKET makeSocket(SOCKET listener, uint64_t timeoutMs = 0, bool blocking = true)
 
     auto time = getTimeMs();
 
-    while(SOCKET_IS_INVALID(newSocket) && (timeoutMs == 0 || getTimeMs() - time < timeoutMs))
+    do
+    {
         newSocket = accept(listener, (struct sockaddr*)&newSocketAddr, &addrSize);
+    }
+    while(SOCKET_IS_INVALID(newSocket) && 
+         (timeoutMs == 0 || getTimeMs() - time < timeoutMs) && 
+         (std::this_thread::sleep_for(std::chrono::milliseconds(1)), true));
 
     setBlocking(newSocket, blocking);
 
