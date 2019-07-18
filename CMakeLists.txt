@@ -6,8 +6,8 @@ include(GNUInstallDirs)
 add_library(SimpleServer INTERFACE)
 
 if (WIN32)
-    target_link_libraries(SimpleServer INTERFACE -lws2_32 -lwsock32)
-endif (WIN32)
+    target_link_libraries(SimpleServer INTERFACE ws2_32 wsock32)
+endif ()
 
 target_include_directories(
     SimpleServer INTERFACE
